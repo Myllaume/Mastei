@@ -7,3 +7,5 @@
     <h2>Actualité</h2>
 
 </main>
+
+<script src="./assets/main.js"></script>

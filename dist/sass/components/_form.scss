@@ -14,26 +14,21 @@ form {
     
     input {
         font-size: 2rem;
-        background-color: transparent;
+        background-color: $color-noir;
         transition: background-color 0.2s;
-
-        &:first-child {
-            border-radius: 2px 2px 0 0;
-        }
     
         &:last-child {
             border-bottom: 1px solid $color-rouge;
         }
 
         &:hover, &:focus {
-            background-color: $color-rouge-transparent;
+            background-color: $color-rouge-sombre;
         }
     }
 
     button {
-        font-size: inherit;
+        font-size: 1.6rem;
         background-color: $color-rouge;
-        border-radius: 0 0 2px 2px;
         transition: background-color 0.2s;
 
         &:hover{

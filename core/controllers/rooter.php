@@ -1,11 +1,6 @@
 <?php
 
-if (!verif_access(1)) {
-    header("Location: /");
-    exit;
-}
-
-if (!isset($_GET) || empty($_GET['view']) || verif_access(1)) {
+if (!isset($_GET) || empty($_GET['view'])) {
     $view = 'menu';
 } else {
     $view = $_GET['view'];

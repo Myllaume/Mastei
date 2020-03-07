@@ -1,9 +1,10 @@
 <nav class="nav">
 
+    <?php if (verif_access(1)): ?>
     <section class="d-flex align-content-center || user-bar">
         <div class="d-flex align-content-center col-4 p-1">
             <div class="user-bar__photo-profil"></div>
-            <span class="user-bar__pseudo">Myllaume</span>
+            <span class="user-bar__pseudo"><?php $_SESSION['pseudo'] ?></span>
         </div>
 
         <div class="col-4 p-1">
@@ -13,10 +14,16 @@
             </ul>
         </div>
         
-        <div class="col-4 p-1"></div>
+        <div class="col-4 p-1">
+            <button id="btn-deconnexion" class="btn">Déconnexion</button>
+            <button class="btn-operateur">Mode opérateur</button>
+        </div>
     </section>
+    <?php endif; ?>
 
     <ul class="nav__main-list">
+
+        <?php if (verif_access(1)): ?>
         <li class="nav__link nav__link--main">Jeux
             <ul class="nav__sub-list">
                 <li class="nav__link nav__link--sub">
@@ -39,6 +46,18 @@
                 </li>
             </ul>
         </li>
+
+        <?php else: ?>
+        <li class="nav__link nav__link--main">Connexion
+            <form id="form" class="form-connexion">
+                <input id="input-courriel" type="email" name="courriel" placeholder="Adresse mail">
+                <input id="input-password" type="password" name="password" placeholder="Mot de passe">
+
+                <button id="form-submit" type="submit">Connexion</button>
+                <button id="form-submit" type="submit">Inscription</button>
+            </form>
+        </li>
+        <?php endif; ?>
         <li class="nav__link nav__link--main">Univers
             <ul class="nav__sub-list">
                 <li class="nav__link nav__link--sub">

@@ -21,12 +21,16 @@ switch ($action) {
 
             $is_ok = true;
             $consol_msg = 'Connexion réussie.';
+            $data = ['pseudo' => $_SESSION['pseudo']];
         } else {
             $consol_msg = 'Il manque des informations.';
         }
         break;
 
     case 'deconnexion':
+            $is_ok = true;
+            $consol_msg = 'Deconnexion réussie.';
+
             $_SESSION = array();
             session_destroy();
         break;

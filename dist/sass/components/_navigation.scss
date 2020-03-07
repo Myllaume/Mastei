@@ -54,7 +54,6 @@
     }
 
     &__sub-list {
-        display: block;
         position: absolute;
         top: 100%;
         left: 0px;
@@ -91,5 +90,18 @@
 
     &__pseudo {
         font-size: 3rem;
+    }
+}
+
+.form-connexion {
+    position: absolute;
+    height: 0px;
+    transition: height 0.2s;
+    top: 100%;
+    left: 0px;
+    overflow: hidden;
+
+    &--visible {
+        height: 150px;
     }
 }
