@@ -1,0 +1,25 @@
+.nav {
+    margin: 4rem 0 3rem 0;
+    background-color: $color-rouge;
+
+    &__page-list {
+        justify-content: space-between;
+        display: flex;
+        list-style: none;
+        padding: 0;
+
+        li {
+            cursor: pointer;
+            text-align: center;
+            font-size: 3rem;
+            width: calc(100%/3);
+            &:not(:last-child) {
+                border-right: 2px solid $color-noir;
+            }
+
+            &:hover {
+                background-color: $color-rouge-sombre;
+            }
+        }
+    }
+}
