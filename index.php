@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -26,6 +30,8 @@
                     <input id="input-courriel" type="email" name="courriel" placeholder="Adresse mail">
                     <input id="input-password" type="password" name="password" placeholder="Mot de passe">
                     <button id="form-submit" type="submit">Connexion</button>
+
+                    <div id="form-feedback"></div>
                 </form>
 
                 <button id="form-reverse" class="my-3 col-6 || btn">Inscription</button>
@@ -36,11 +42,14 @@
 
     </div>
 
+    <script src="./assets/main.js"></script>
+
     <script>
         var form = {
             this: document.querySelector('#form'),
             btnReverse: document.querySelector('#form-reverse'),
             btnSubmit: document.querySelector('#form-submit'),
+            feedback: document.querySelector('#form-feedback'),
 
             input : {
                 courriel : document.querySelector('#input-courriel'),
@@ -53,6 +62,21 @@
 
         form.this.addEventListener('submit', (e) => {
             e.preventDefault();
+
+            var ajax = new ajaxRequest('POST');
+            ajax.filePath('./core/controllers/authentification.php');
+            ajax.addForm(form.this, form.btnSubmit);
+            ajax.showError();
+            ajax.addArgument({
+                'action': 'connexion'
+            });
+            ajax.send((json) => {
+                if (json.isOk) {
+                    document.location.href="?view=menu"; 
+                } else {
+                    feedback.textContent = json.consolMsg;
+                }
+            });
         });
 
         let isReverse = false;
