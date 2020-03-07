@@ -16,11 +16,11 @@ switch ($action) {
     case 'connexion':
         if (isset($_POST) && !empty($_POST['courriel']) && !empty($_POST['password'])) {
             $_SESSION['id'] = 8;
+            $_SESSION['pseudo'] = 'Myllaume';
             $_SESSION['access_lvl'] = 3;
 
             $is_ok = true;
             $consol_msg = 'Connexion réussie.';
-            $data = ['id' => $_SESSION['id'], 'access_lvl' => $_SESSION['access_lvl']];
         } else {
             $consol_msg = 'Il manque des informations.';
         }

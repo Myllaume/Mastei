@@ -10,6 +10,12 @@ body {
     color: $color-blanc;
 }
 
+h2 {
+    @extend %font-megrim-regular;
+    color: $color-rouge;
+    font-size: 6rem;
+}
+
 p,
 a,
 button {
@@ -19,6 +25,12 @@ button {
 
 a {
     color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .titre-site, .sstitre-site {

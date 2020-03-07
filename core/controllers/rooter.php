@@ -22,11 +22,11 @@ switch ($view) {
 }
 
 function verif_access($access_required) {
-    if (empty($_SESSION['access'])) {
+    if (empty($_SESSION['access_lvl'])) {
         return false;
     }
 
-    if ($_SESSION['access'] < $access_required) {
+    if ($_SESSION['access_lvl'] < $access_required) {
         return false;
     }
 
