@@ -1,0 +1,14 @@
+.home-wrapper {
+    margin: 0 auto;
+    width: 80vw;
+    height: 100vh;
+
+    &__main-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        height: 100%;
+        padding: 16vh 0;
+    }
+}

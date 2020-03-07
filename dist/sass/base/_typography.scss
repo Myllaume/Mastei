@@ -5,16 +5,35 @@ html {
 body {
     /* tous les textes auront une
      hauteur de base de 14px */
-    font-size: 1.4rem;
+    @extend %font-roboto-light;
+    font-size: 1.6rem;
     color: $color-blanc;
 }
 
-.titre-site {
+p,
+a,
+button {
+    letter-spacing: 0.1rem;
+    line-height: 2rem;
+}
+
+a {
+    color: inherit;
+}
+
+.titre-site, .sstitre-site {
     @extend %font-megrim-regular;
     color: $color-rouge;
+    margin: 0;
 
     &--welcome {
-        font-size: 10rem;
+        font-size: 16rem;
         text-align: center;
+
+        + .sstitre-site {
+            font-size: 2rem;
+            text-align: center;
+            letter-spacing: 0.2rem;
+        }
     }
 }
