@@ -1,0 +1,43 @@
+form {
+    display: flex;
+    flex-direction: column;
+
+    input, button {
+        @extend %font-roboto-light;
+        border-top: 1px solid $color-rouge;
+        border-bottom: 0px solid $color-rouge;
+        border-left: 1px solid $color-rouge;
+        border-right: 1px solid $color-rouge;
+        color: inherit;
+        padding: .7rem 1rem;
+    }
+    
+    input {
+        font-size: 2rem;
+        background-color: transparent;
+        transition: background-color 0.2s;
+
+        &:first-child {
+            border-radius: 2px 2px 0 0;
+        }
+    
+        &:last-child {
+            border-bottom: 1px solid $color-rouge;
+        }
+
+        &:hover, &:focus {
+            background-color: $color-rouge-transparent;
+        }
+    }
+
+    button {
+        font-size: inherit;
+        background-color: $color-rouge;
+        border-radius: 0 0 2px 2px;
+        transition: background-color 0.2s;
+
+        &:hover{
+            background-color: $color-rouge-sombre;
+        }
+    }
+}
