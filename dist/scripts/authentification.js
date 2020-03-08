@@ -10,8 +10,12 @@ var formConnexion = {
 
 var userbar = {
     this: document.querySelector('#user-bar'),
-    pseudo: document.querySelector('#user-pseudo')
+    pseudo: document.querySelector('#user-pseudo'),
+    nbSecret: document.querySelector('#user-nb-secret'),
+    nbMessage: document.querySelector('#user-nb-message')
 };
+
+var navSwitch = document.querySelector('#nav-switch')
 
 if (formConnexion.this) {
     
@@ -28,11 +32,15 @@ if (formConnexion.this) {
                 courriel: formConnexion.input.courriel.value,
                 password: formConnexion.input.password.value
             },
-            function( data ) {
-                if (data.isOk) {$
+            function( json ) {
+                if (json.isOk) {
                     userbar.this.classList.add('user-bar--active');
                     formConnexion.this.classList.remove('form-connexion--visible');
-                    userbar.pseudo.textContent = 'Myllaume';
+                    userbar.pseudo.textContent = json.data.pseudo;
+                    userbar.nbSecret = json.data.nbSecret;
+                    userbar.nbMessage = json.data.nbMessage;
+
+                    navSwitch.innerHTML = json.data.html;
                 }
             }, 'json');
     });
@@ -44,9 +52,10 @@ if (btnDeconnexion) {
 
     btnDeconnexion.addEventListener('click', () => {
         $.get( "./core/controllers/authentification.php", { action: "deconnexion" },
-        function( data ) {
-            if (data.isOk) {
+        function( json ) {
+            if (json.isOk) {
                 userbar.this.classList.remove('user-bar--active');
+                navSwitch.innerHTML = json.data.html;
             }
         }, 'json' )
     });
