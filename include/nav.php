@@ -48,8 +48,8 @@ else {
     <input id="input-connexion-courriel" type="email" name="courriel" placeholder="Adresse mail">
     <input id="input-connexion-password" type="password" name="password" placeholder="Mot de passe">
 
-    <button id="form-submit" type="submit">Connexion</button>
-    <button id="form-submit" type="submit">Inscription</button>
+    <button id="form-submit-connexion" type="submit">Connexion</button>
+    <button id="form-submit-inscription" type="submit">Inscription</button>
 </form>
     ';} ?>
             

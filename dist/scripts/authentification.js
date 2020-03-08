@@ -1,10 +1,36 @@
 var formConnexion = {
     this: document.querySelector('#form-connexion'),
-    btnSubmit: document.querySelector('#form-connexion-submit'),
 
-    input : {
-        courriel : document.querySelector('#input-connexion-courriel'),
-        password : document.querySelector('#input-connexion-password')
+    btn: {
+        connexion: document.querySelector('#form-submit-connexion'),
+        inscription: document.querySelector('#form-submit-inscription')
+    },
+
+    input: {
+        courriel: document.querySelector('#input-connexion-courriel'),
+        password: document.querySelector('#input-connexion-password')
+    },
+
+    connecter: function (event) {
+        event.preventDefault();
+
+        $.post('./core/controllers/authentification.php?action=connexion',
+            {
+                courriel: formConnexion.input.courriel.value,
+                password: formConnexion.input.password.value
+            },
+            function( json ) {
+                if (json.isOk) {
+                    userbar.this.classList.add('user-bar--active');
+                    formConnexion.this.classList.remove('form-connexion--visible');
+                    userbar.pseudo.textContent = json.data.pseudo;
+                    userbar.nbSecret = json.data.nbSecret;
+                    userbar.nbMessage = json.data.nbMessage;
+
+                    navSwitch.innerHTML = json.data.html;
+                }
+            }, 'json'
+        );
     }
 }
 
@@ -24,26 +50,7 @@ if (formConnexion.this) {
         formConnexion.input.courriel.focus();
     });
     
-    formConnexion.this.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        $.post( "./core/controllers/authentification.php?action=connexion",
-            {
-                courriel: formConnexion.input.courriel.value,
-                password: formConnexion.input.password.value
-            },
-            function( json ) {
-                if (json.isOk) {
-                    userbar.this.classList.add('user-bar--active');
-                    formConnexion.this.classList.remove('form-connexion--visible');
-                    userbar.pseudo.textContent = json.data.pseudo;
-                    userbar.nbSecret = json.data.nbSecret;
-                    userbar.nbMessage = json.data.nbMessage;
-
-                    navSwitch.innerHTML = json.data.html;
-                }
-            }, 'json');
-    });
+    formConnexion.btn.connexion.addEventListener('click', formConnexion.connecter);
 }
 
 var btnDeconnexion = document.querySelector('#btn-deconnexion');
@@ -55,7 +62,35 @@ if (btnDeconnexion) {
         function( json ) {
             if (json.isOk) {
                 userbar.this.classList.remove('user-bar--active');
-                navSwitch.innerHTML = json.data.html;
+                navSwitch.innerHTML = 'Jouer';
+
+                formConnexion.this = document.createElement('form');
+                formConnexion.this.classList.add('form-connexion');
+                navSwitch.appendChild(formConnexion.this);
+
+                formConnexion.input.courriel = document.createElement('input');
+                formConnexion.input.courriel.setAttribute('type', 'email');
+                formConnexion.input.courriel.setAttribute('name', 'courriel');
+                formConnexion.input.courriel.setAttribute('placeholder', 'Adresse mail');
+                formConnexion.this.appendChild(formConnexion.input.courriel);
+                
+                formConnexion.input.password = document.createElement('input');
+                formConnexion.input.password.setAttribute('type', 'password');
+                formConnexion.input.password.setAttribute('name', 'password');
+                formConnexion.input.password.setAttribute('placeholder', 'Mot de passe');
+                formConnexion.this.appendChild(formConnexion.input.password);
+
+                formConnexion.btn.connexion = document.createElement('button');
+                formConnexion.btn.connexion.setAttribute('type', 'submit');
+                formConnexion.btn.connexion.textContent = 'Connexion';
+                formConnexion.this.appendChild(formConnexion.btn.connexion);
+
+                formConnexion.btn.connexion.addEventListener('click', formConnexion.connecter);
+
+                formConnexion.btn.inscription = document.createElement('button');
+                formConnexion.btn.inscription.setAttribute('type', 'submit');
+                formConnexion.btn.inscription.textContent = 'Inscription';
+                formConnexion.this.appendChild(formConnexion.btn.inscription);
             }
         }, 'json' )
     });
