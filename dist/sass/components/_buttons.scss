@@ -5,8 +5,16 @@
     font-size: 2.2rem;
     background-color: transparent;
     border: 0;
+    color: $color-blanc;
+    text-align: left;
+    padding: 0;
+    margin: .4rem 0;
 
     &--large {
         font-size: 3rem;
+    }
+
+    &--noir {
+        color: $color-noir;
     }
 }

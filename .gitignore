@@ -5,3 +5,5 @@ package-lock.json
 /assets
 /libs
 /data
+
+/core/bdd.php

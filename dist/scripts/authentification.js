@@ -7,7 +7,7 @@ var formConnexion = {
     },
 
     input: {
-        courriel: document.querySelector('#input-connexion-courriel'),
+        pseudo: document.querySelector('#input-connexion-pseudo'),
         password: document.querySelector('#input-connexion-password')
     },
 
@@ -16,7 +16,7 @@ var formConnexion = {
 
         $.post('./core/controllers/authentification.php?action=connexion',
             {
-                courriel: formConnexion.input.courriel.value,
+                pseudo: formConnexion.input.pseudo.value,
                 password: formConnexion.input.password.value
             },
             function( json ) {
@@ -47,7 +47,7 @@ if (formConnexion.this) {
     
     formConnexion.this.parentNode.addEventListener('click', (e) => {
         formConnexion.this.classList.add('form-connexion--visible');
-        formConnexion.input.courriel.focus();
+        formConnexion.input.pseudo.focus();
     });
     
     formConnexion.btn.connexion.addEventListener('click', formConnexion.connecter);
@@ -68,11 +68,11 @@ if (btnDeconnexion) {
                 formConnexion.this.classList.add('form-connexion');
                 navSwitch.appendChild(formConnexion.this);
 
-                formConnexion.input.courriel = document.createElement('input');
-                formConnexion.input.courriel.setAttribute('type', 'email');
-                formConnexion.input.courriel.setAttribute('name', 'courriel');
-                formConnexion.input.courriel.setAttribute('placeholder', 'Adresse mail');
-                formConnexion.this.appendChild(formConnexion.input.courriel);
+                formConnexion.input.pseudo = document.createElement('input');
+                formConnexion.input.pseudo.setAttribute('type', 'text');
+                formConnexion.input.pseudo.setAttribute('name', 'pseudo');
+                formConnexion.input.pseudo.setAttribute('placeholder', 'Pseudo');
+                formConnexion.this.appendChild(formConnexion.input.pseudo);
                 
                 formConnexion.input.password = document.createElement('input');
                 formConnexion.input.password.setAttribute('type', 'password');

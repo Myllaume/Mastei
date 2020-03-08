@@ -13,9 +13,9 @@
             </ul>
         </div>
         
-        <div class="col-4 p-1">
-            <button id="btn-deconnexion" class="btn">Déconnexion</button>
-            <button class="btn-operateur">Mode opérateur</button>
+        <div class="col-4 p-1 d-flex flex-column">
+            <button id="btn-deconnexion" class="btn btn--noir">Déconnexion</button>
+            <a id="btn-operateur" class="btn btn--noir" href="#">Mode opérateur</a>
         </div>
     </section>
 
@@ -45,7 +45,7 @@
 else {
     echo 'Jouer
 <form id="form-connexion" class="form-connexion">
-    <input id="input-connexion-courriel" type="email" name="courriel" placeholder="Adresse mail">
+    <input id="input-connexion-pseudo" type="text" name="pseudo" placeholder="Pseudo">
     <input id="input-connexion-password" type="password" name="password" placeholder="Mot de passe">
 
     <button id="form-submit-connexion" type="submit">Connexion</button>
