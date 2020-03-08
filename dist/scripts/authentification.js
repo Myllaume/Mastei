@@ -17,10 +17,8 @@ if (formConnexion.this) {
     
     formConnexion.this.parentNode.addEventListener('click', (e) => {
         formConnexion.this.classList.add('form-connexion--visible');
+        formConnexion.input.courriel.focus();
     });
-    
-    // auto-focus formulaire
-    // form.input.courriel.focus();
     
     formConnexion.this.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -29,42 +27,28 @@ if (formConnexion.this) {
             {
                 courriel: formConnexion.input.courriel.value,
                 password: formConnexion.input.password.value
-            })
-            .done(function( data ) {
-                console.log(data);
-            });
-    
-        // var ajax = new ajaxRequest('POST');
-        // ajax.filePath('./core/controllers/authentification.php');
-        // ajax.addForm(formConnexion.this, formConnexion.btnSubmit);
-        // ajax.showError();
-        // ajax.addArgument({
-        //     'action': 'connexion'
-        // });
-        // ajax.send((json) => {
-        //     if (json.isOk) {
-        //         userbar.this.classList.add('user-bar--active');
-        //         userbar.pseudo.textContent = 'Myllaume' ;
-        //     }
-        // });
+            },
+            function( data ) {
+                if (data.isOk) {$
+                    userbar.this.classList.add('user-bar--active');
+                    formConnexion.this.classList.remove('form-connexion--visible');
+                    userbar.pseudo.textContent = 'Myllaume';
+                }
+            }, 'json');
     });
 }
 
 var btnDeconnexion = document.querySelector('#btn-deconnexion');
+
 if (btnDeconnexion) {
-    console.log(userbar.this);
+
     btnDeconnexion.addEventListener('click', () => {
-
-        
-
-        // $.get( "./core/controllers/authentification.php",
-        // { action: "deconnexion" });
-
-        $.get( "./core/controllers/authentification.php", { action: "deconnexion" } )
-            .done(function( data ) {
-                if (data.isOk) {
-                    userbar.this.classList.remove('user-bar--active');
-                }
-            });
+        $.get( "./core/controllers/authentification.php", { action: "deconnexion" },
+        function( data ) {
+            if (data.isOk) {
+                userbar.this.classList.remove('user-bar--active');
+            }
+        }, 'json' )
     });
+
 }
