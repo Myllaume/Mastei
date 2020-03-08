@@ -1,10 +1,9 @@
 <nav class="nav">
 
-    <?php if (verif_access(1)): ?>
-    <section class="d-flex align-content-center || user-bar">
+    <section id="user-bar" class="user-bar <?php if (verif_access(1)) { echo 'user-bar--active'; } ?>">
         <div class="d-flex align-content-center col-4 p-1">
             <div class="user-bar__photo-profil"></div>
-            <span class="user-bar__pseudo"><?php $_SESSION['pseudo'] ?></span>
+            <span id="user-pseudo" class="user-bar__pseudo"><?= $_SESSION['pseudo'] ?></span>
         </div>
 
         <div class="col-4 p-1">
@@ -19,7 +18,6 @@
             <button class="btn-operateur">Mode opérateur</button>
         </div>
     </section>
-    <?php endif; ?>
 
     <ul class="nav__main-list">
 
@@ -49,9 +47,9 @@
 
         <?php else: ?>
         <li class="nav__link nav__link--main">Connexion
-            <form id="form" class="form-connexion">
-                <input id="input-courriel" type="email" name="courriel" placeholder="Adresse mail">
-                <input id="input-password" type="password" name="password" placeholder="Mot de passe">
+            <form id="form-connexion" class="form-connexion">
+                <input id="input-connexion-courriel" type="email" name="courriel" placeholder="Adresse mail">
+                <input id="input-connexion-password" type="password" name="password" placeholder="Mot de passe">
 
                 <button id="form-submit" type="submit">Connexion</button>
                 <button id="form-submit" type="submit">Inscription</button>

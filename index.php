@@ -16,6 +16,8 @@ error_reporting(E_ALL);
 </head>
 
 <body>
+
+<script src="./libs/jquery.js"></script>
     
     <div class="wrapper">
 
