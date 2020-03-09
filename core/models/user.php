@@ -20,7 +20,7 @@ class User {
             throw new Exception("L'id utilisateur doit être un nombre entier");
         }
         
-        $this->id = intval($var);
+        $this->id = $var;
     }
 
     function get_id() {
@@ -36,7 +36,7 @@ class User {
             throw new Exception("Le pseudo utilisateur ne doit pas excéder 50 caractères");
         }
         
-        $this->pseudo = strval($var);
+        $this->pseudo = $var;
     }
 
     function get_pseudo() {
@@ -52,7 +52,7 @@ class User {
             throw new Exception("L'adresse courriel utilisateur entrée est invalidée par PHP");
         }
         
-        $this->courriel = strval($var);
+        $this->courriel = $var;
     }
 
     function get_courriel() {
@@ -68,7 +68,7 @@ class User {
         //     throw new Exception("Le mot de passe utilisateur n'a pas une diversité de caractère suffisante");
         // }
         
-        $this->password = strval($var);
+        $this->password = $var;
     }
 
     function get_password() {
@@ -84,7 +84,7 @@ class User {
             throw new Exception("Le niveau d'accès utilisateur ne peut être null ou supérieur à 3");
         }
         
-        $this->access_lvl = intval($var);
+        $this->access_lvl = $var;
     }
 
     function get_access_lvl() {
@@ -111,10 +111,10 @@ class User {
             throw new Exception('Aucun utilisateur trouvé dans la base de données.');
         }
 
-        $this->set_id(user_informations['id']);
-        $this->set_pseudo(user_informations['pseudo']);
-        $this->set_courriel(user_informations['courriel']);
-        $this->set_password(user_informations['password']);
-        $this->set_access_lvl(user_informations['access_lvl']);
+        $this->set_id(intval($user_informations['id']));
+        $this->set_pseudo($user_informations['pseudo']);
+        $this->set_courriel($user_informations['courriel']);
+        $this->set_password($user_informations['password']);
+        $this->set_access_lvl(intval($user_informations['access_lvl']));
     }
 }

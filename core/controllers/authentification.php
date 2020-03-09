@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors','on');
+error_reporting(E_ALL);
 session_start();
 
 if (!isset($_GET) || empty($_GET['action'])) {
@@ -46,7 +48,7 @@ switch ($action) {
 
             try {
                 $class_user->set_pseudo($_POST['pseudo']);
-                $class_user->select_bdd($_POST['pseudo']);
+                $class_user->select_bdd($bdd);
                 $class_user->verif_password($_POST['password']);
 
                 $_SESSION['id'] = $class_user->get_id();

@@ -30,7 +30,9 @@ var formConnexion = {
                     navSwitch.innerHTML = json.data.html;
                 }
             }, 'json'
-        );
+        ).fail(function (data) {
+            console.error(data);
+        });
     }
 }
 
