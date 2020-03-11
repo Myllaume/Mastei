@@ -1,0 +1,17 @@
+.terminal {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    
+    &__content {
+        text-align: center;
+        border-top: 2px solid $color-rouge;
+        border-left: 2px solid $color-rouge;
+        border-right: 2px solid $color-rouge;
+        background-color: $color-noir;
+        width: 50%;
+        padding: 1.6rem 0;
+    }
+}

@@ -9,9 +9,12 @@
 @import './base/util';
 
 // COMPONENTS
-@import './components/navigation';
 @import './components/buttons';
 @import './components/form';
+
+// LAYOUTS
+@import './layouts/navigation';
+@import './layouts/terminal';
 
 // PAGES
 @import './pages/home';

@@ -28,6 +28,10 @@ var formConnexion = {
                     userbar.nbMessage = json.data.nbMessage;
 
                     navSwitch.innerHTML = json.data.html;
+                } else {
+                    var notif = new Terminal;
+                    notif.addMessage('Echec de connexion');
+                    notif.addTime(1);
                 }
             }, 'json'
         ).fail(function (data) {
