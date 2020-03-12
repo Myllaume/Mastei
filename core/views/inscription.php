@@ -5,7 +5,7 @@
     <h2>Inscription</h2>
 
     <div class="d-flex justify-content-center">
-        <form class="col-8">
+        <form id="form-inscription" class="col-8">
             <fieldset>
                 <legend>Identifiants</legend>
                 
@@ -17,7 +17,7 @@
                 <legend>Mot de passe</legend>
 
                 <input id="input-inscription-password" type="password" name="password" placeholder="Mot de passe">
-                <input id="input-inscription-password-confirm" type="password" name="password" placeholder="Confirmation">
+                <input id="input-inscription-password-confirm" type="password" name="confirm_password" placeholder="Confirmation">
             </fieldset>
     
             <button id="form-submit-inscription" type="submit">Inscription</button>

@@ -117,4 +117,19 @@ class User {
         $this->set_password($user_informations['password']);
         $this->set_access_lvl(intval($user_informations['access_lvl']));
     }
+
+    function insert_bdd($bdd) {
+        $request = $bdd->prepare('INSERT INTO users SET pseudo=:pseudo, courriel=:courriel, password=:password');
+        $is_valid_request = $request->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
+        $is_valid_request = $request->bindValue(':courriel', $this->courriel, PDO::PARAM_STR);
+        $is_valid_request = $request->bindValue(':password', $this->password, PDO::PARAM_STR);
+        $is_valid_request = $request->bindValue(':access_lvl', $this->access_lvl, PDO::PARAM_INT);
+        $is_valid_request &= $request->execute();
+
+        if (!$is_valid_request) {
+            throw new Exception('Erreur bdd : INSERT Users');
+        }
+
+        $this->id = intval($bdd->lastInsertId());
+    }
 }

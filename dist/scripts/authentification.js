@@ -5,7 +5,7 @@
  * - btn : boutons de fonctionnement du formulaire
  * - input : inputs du formulaire
  * - open : foncton d'ouverture du formulaire
- * - connecter : fonction de requête pour la connexion
+ * - send : fonction de requête pour la connexion
  */
 
 var formConnexion = {
@@ -13,8 +13,7 @@ var formConnexion = {
 
     btn: {
         open: document.querySelector('#nav-deploy'),
-        connexion: document.querySelector('#form-submit-connexion'),
-        inscription: document.querySelector('#form-submit-inscription')
+        connexion: document.querySelector('#form-submit-connexion')
     },
 
     input: {
@@ -74,10 +73,10 @@ var formConnexion = {
             formConnexion.open(isOpen)
         });
 
-        formConnexion.btn.connexion.addEventListener('click', formConnexion.connecter);
+        formConnexion.btn.connexion.addEventListener('click', formConnexion.send);
     },
 
-    connecter: function(event) {
+    send: function(event) {
         event.preventDefault();
 
         $.post('./core/controllers/authentification.php?action=connexion',
@@ -158,7 +157,7 @@ if (formConnexion.this) {
         formConnexion.open(isOpen)
     });
 
-    formConnexion.btn.connexion.addEventListener('click', formConnexion.connecter);
+    formConnexion.this.addEventListener('submit', formConnexion.send);
 }
 
 if (navigation.this) {
@@ -171,4 +170,44 @@ if (navigation.this) {
             }
         }, 'json' )
     });
+}
+
+var formInscription = {
+    this: document.querySelector('#form-inscription'),
+    btnSubmit: document.querySelector('#form-submit-inscription'),
+
+    input: {
+        pseudo: document.querySelector('#input-inscription-pseudo'),
+        courriel: document.querySelector('#input-inscription-courriel'),
+        password: document.querySelector('#input-inscription-password'),
+        passwordConfirm: document.querySelector('#input-inscription-password-confirm')
+    },
+
+    send: function(event) {
+        event.preventDefault();
+
+        $.post('./core/controllers/authentification.php?action=inscription',
+            {
+                pseudo: formInscription.input.pseudo.value,
+                courriel: formInscription.input.courriel.value,
+                password: formInscription.input.password.value,
+                passwordConfirm: formInscription.input.passwordConfirm.value
+            },
+            function( json ) {
+                var notifConnexion = new Terminal;
+                if (json.isOk) {
+                    notifConnexion.addMessage(json.consolMsg);
+                } else {
+                    notifConnexion.addMessage('Erreur : ' + json.consolMsg);
+                }
+                notifConnexion.addTime(4);
+            }, 'json'
+        ).fail(function (data) {
+            console.error(data);
+        });
+    }
+}
+
+if (formInscription.this) {
+    formInscription.this.addEventListener('submit', formInscription.send);
 }
