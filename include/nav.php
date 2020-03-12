@@ -21,7 +21,7 @@
 
     <ul class="nav__main-list">
         <li id="nav-switch" class="nav__link nav__link--main"><?php if (verif_access(1)) {
-            echo 'Jeux
+            echo '<div id="nav-deploy">Jeux</div>
 <ul class="nav__sub-list">
     <li class="nav__link nav__link--sub">
         <a class="nav__link--game" href="#">
@@ -43,7 +43,7 @@
     </li>
 </ul>';}
 else {
-    echo 'Jouer
+    echo '<div id="nav-deploy">Jouer</div>
 <form id="form-connexion" class="form-connexion">
     <input id="input-connexion-pseudo" type="text" name="pseudo" placeholder="Pseudo">
     <input id="input-connexion-password" type="password" name="password" placeholder="Mot de passe">
