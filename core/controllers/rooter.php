@@ -14,6 +14,10 @@ switch ($view) {
     case 'menu':
         include_once 'core/views/menu.php';
         break;
+    
+    case 'inscription':
+        include_once 'core/views/inscription.php';
+        break;
 }
 
 function verif_access($access_required) {

@@ -137,6 +137,7 @@ var userbar = {
  */
 
 var navigation = {
+    this: document.querySelector('#nav'),
     switcher: document.querySelector('#nav-switch'),
     btnDeconnexion: document.querySelector('#btn-deconnexion')
 };
@@ -160,12 +161,14 @@ if (formConnexion.this) {
     formConnexion.btn.connexion.addEventListener('click', formConnexion.connecter);
 }
 
-navigation.btnDeconnexion.addEventListener('click', () => {
-    $.get( "./core/controllers/authentification.php", { action: "deconnexion" },
-    function( json ) {
-        if (json.isOk) {
-            userbar.close();
-            formConnexion.gen(); // re-génération du formulaire
-        }
-    }, 'json' )
-});
+if (navigation.this) {
+    navigation.btnDeconnexion.addEventListener('click', () => {
+        $.get( "./core/controllers/authentification.php", { action: "deconnexion" },
+        function( json ) {
+            if (json.isOk) {
+                userbar.close();
+                formConnexion.gen(); // re-génération du formulaire
+            }
+        }, 'json' )
+    });
+}

@@ -1,4 +1,4 @@
-<nav class="nav">
+<nav id="nav" class="nav">
 
     <section id="user-bar" class="user-bar <?php if (verif_access(1)) { echo 'user-bar--active'; } ?>">
         <div class="d-flex align-content-center col-4 p-1">
@@ -49,7 +49,7 @@ else {
     <input id="input-connexion-password" type="password" name="password" placeholder="Mot de passe">
 
     <button id="form-submit-connexion" type="submit">Connexion</button>
-    <button id="form-submit-inscription" type="submit">Inscription</button>
+    <a href="?view=inscription">Inscription</a>
 </form>
     ';} ?>
             
