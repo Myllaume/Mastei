@@ -22,14 +22,7 @@ var formConnexion = {
     },
 
     open: function(isOpen) {
-        if (!isOpen) {
-            formConnexion.this.classList.add('form-connexion--visible');
-            formConnexion.input.pseudo.focus();
-            isOpen = true;
-        } else {
-            formConnexion.this.classList.remove('form-connexion--visible');
-            isOpen = false;
-        }
+        formConnexion.this.classList.toggle('form-connexion--visible');
     },
 
     gen: function() {
@@ -68,10 +61,7 @@ var formConnexion = {
         formConnexion.this.appendChild(formConnexion.btn.inscription);
 
         // écouteurs d'évènement
-        formConnexion.btn.open.addEventListener('click', () => {
-            let isOpen = false;
-            formConnexion.open(isOpen)
-        });
+        formConnexion.btn.open.addEventListener('click', formConnexion.open);
 
         formConnexion.btn.connexion.addEventListener('click', formConnexion.send);
     },
@@ -152,10 +142,7 @@ var navigation = {
 if (formConnexion.this) {
     // si le formulaire est inséré dans la page :
 
-    formConnexion.btn.open.addEventListener('click', () => {
-        let isOpen = false;
-        formConnexion.open(isOpen)
-    });
+    formConnexion.btn.open.addEventListener('click', formConnexion.open);
 
     formConnexion.this.addEventListener('submit', formConnexion.send);
 }
