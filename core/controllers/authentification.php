@@ -91,16 +91,17 @@ switch ($action) {
                     $class_user->set_pseudo($_POST['pseudo']);
                     $class_user->set_courriel($_POST['courriel']);
                     $class_user->set_password($_POST['password']);
-                    $class_user->set_access_lvl(1);
+                    $class_user->set_access_lvl(2);
                     $class_user->verif_password($_POST['confirm_password']);
                     $class_user->insert_bdd($bdd);
-    
+                    
                     $is_ok = true;
                     $consol_msg = 'Connexion réussie.';
-                    $data = [];
-    
+                    $data = $data = $_POST;;
+                    
                 } catch (Exception $error) {
                     $consol_msg = $error->getMessage();
+                    $data = $data = $_POST;;
                 }
 
             } else {

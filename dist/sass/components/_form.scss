@@ -44,6 +44,8 @@ form {
         font-size: 1.6rem;
         background-color: $color-rouge;
         transition: background-color 0.2s;
+        text-decoration: none;
+        text-align: center;
 
         &:hover{
             background-color: $color-rouge-sombre;

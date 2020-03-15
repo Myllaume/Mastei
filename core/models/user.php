@@ -80,8 +80,8 @@ class User {
             throw new Exception("Le niveau d'accès utilisateur doit être un nombre entier");
         }
 
-        if ($var > 0 && $var <= 3) {
-            throw new Exception("Le niveau d'accès utilisateur ne peut être null ou supérieur à 3");
+        if ($var < 1 && $var > 4) {
+            throw new Exception("Le niveau d'accès utilisateur doit être compris entre 1 et 3");
         }
         
         $this->access_lvl = $var;
@@ -119,7 +119,7 @@ class User {
     }
 
     function insert_bdd($bdd) {
-        $request = $bdd->prepare('INSERT INTO users SET pseudo=:pseudo, courriel=:courriel, password=:password');
+        $request = $bdd->prepare('INSERT INTO users SET pseudo=:pseudo, courriel=:courriel, password=:password, access_lvl=:access_lvl');
         $is_valid_request = $request->bindValue(':pseudo', $this->pseudo, PDO::PARAM_STR);
         $is_valid_request = $request->bindValue(':courriel', $this->courriel, PDO::PARAM_STR);
         $is_valid_request = $request->bindValue(':password', $this->password, PDO::PARAM_STR);

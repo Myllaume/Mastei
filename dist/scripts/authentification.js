@@ -178,9 +178,11 @@ var formInscription = {
                 pseudo: formInscription.input.pseudo.value,
                 courriel: formInscription.input.courriel.value,
                 password: formInscription.input.password.value,
-                passwordConfirm: formInscription.input.passwordConfirm.value
+                confirm_password: formInscription.input.passwordConfirm.value
             },
             function( json ) {
+                console.log(json);
+                
                 var notifConnexion = new Terminal;
                 if (json.isOk) {
                     notifConnexion.addMessage(json.consolMsg);
