@@ -21,7 +21,7 @@ var formConnexion = {
         password: document.querySelector('#input-connexion-password')
     },
 
-    open: function(isOpen) {
+    open: function() {
         formConnexion.this.classList.toggle('form-connexion--visible');
     },
 
@@ -76,11 +76,17 @@ var formConnexion = {
             },
             function( json ) {
                 if (json.isOk) {
+                    console.log(json);
+                    
                     userbar.this.classList.add('user-bar--active');
                     formConnexion.this.classList.remove('form-connexion--visible');
                     userbar.pseudo.textContent = json.data.pseudo;
                     userbar.nbSecret = json.data.nbSecret;
                     userbar.nbMessage = json.data.nbMessage;
+
+                    if (json.data.accessLvl >= 3) {
+                        userbar.addBtnOpe();
+                    }
 
                     // remplacement du formulaire par la liste des jeux
                     navigation.switcher.innerHTML = json.data.html;
@@ -111,6 +117,18 @@ var userbar = {
     pseudo: document.querySelector('#user-pseudo'),
     nbSecret: document.querySelector('#user-nb-secret'),
     nbMessage: document.querySelector('#user-nb-message'),
+    contenerBtns: document.querySelector('#user-btn-contener'),
+
+    btn: {
+        ope: document.createElement('a')
+    },
+
+    addBtnOpe: function() {
+        userbar.btn.ope.classList.add('btn', 'btn--noir');
+        userbar.btn.ope.textContent = 'Mode opérateur';
+        userbar.btn.ope.setAttribute('href', '#');
+        userbar.contenerBtns.appendChild(userbar.btn.ope);
+    },
 
     close: function() {
         userbar.this.classList.remove('user-bar--active');
@@ -181,8 +199,6 @@ var formInscription = {
                 confirm_password: formInscription.input.passwordConfirm.value
             },
             function( json ) {
-                console.log(json);
-                
                 var notifConnexion = new Terminal;
                 if (json.isOk) {
                     notifConnexion.addMessage(json.consolMsg);

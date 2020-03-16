@@ -13,9 +13,11 @@
             </ul>
         </div>
         
-        <div class="col-4 p-1 d-flex flex-column">
+        <div id="user-btn-contener" class="col-4 p-1 d-flex flex-column">
             <button id="btn-deconnexion" class="btn btn--noir">Déconnexion</button>
+            <?php if (verif_access(3)): ?>
             <a id="btn-operateur" class="btn btn--noir" href="#">Mode opérateur</a>
+            <?php endif; ?>
         </div>
     </section>
 
